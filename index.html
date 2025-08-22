@@ -9,19 +9,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Poppins:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-white-trans: rgba(255, 255, 255, 0.9);
-      --sidebar-red: #c04040;
-      --accent-red: #a03030;
-      --text-dark: #333;
-      --particle-color: rgba(160, 48, 48, 0.3);
+      --bg-main: #2c2a4d;
+      --bg-gradient: radial-gradient(ellipse at bottom, #3a2563 0%, #232347 100%);
+      --sidebar-purple: #463a5c;
+      --accent-purple: #8c6fc6;
+      --accent-blue: #5a5c8a;
+      --text-light: #e6e6fa;
+  --card-bg: rgba(115, 97, 153, 0.95);
+  --section-bg: rgba(135, 126, 172, 0.45);
+      --card-shadow: #0005;
     }
 
     body {
       margin: 0;
       font-family: 'Fira Sans', Arial, sans-serif;
       font-weight: 400;
-      background: transparent;
-      color: var(--text-dark);
+      background: var(--bg-gradient);
+      color: var(--text-light);
       overflow-x: hidden;
       word-wrap: break-word;
       line-height: 1.6;
@@ -30,27 +34,29 @@
       font-family: 'Poppins', 'Fira Sans', Arial, sans-serif;
       font-weight: 600;
       word-wrap: break-word;
+      color: #e0e0ff;
     }
 
-    #particle-canvas {
+    #star-canvas {
       position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       z-index: -1;
+      pointer-events: none;
     }
 
     #hero .lead {
-  margin-top: 2rem;
-  margin-bottom: 2.5rem;
-  margin-left: 10%;
-  margin-right: 10%;
-  }
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
 
     /* Sidebar */
     .sidebar {
       position: fixed; top: 0; left: 0;
       width: 250px; height: 100vh;
-      background-color: var(--sidebar-red);
-      padding: 1rem; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+      background: var(--sidebar-purple);
+      padding: 1rem; box-shadow: 2px 0 12px #0008;
       z-index: 1000; transition: all .3s ease;
     }
     .sidebar .nav-link {
@@ -58,7 +64,7 @@
       border-radius: 4px; transition: background-color .2s;
     }
     .sidebar .nav-link:hover {
-      background-color: var(--accent-red) !important;
+      background: var(--accent-purple) !important;
     }
 
     /* Main content */
@@ -93,27 +99,27 @@
     .sidebar-toggle {
       display: none; position: fixed;
       top: 20px; left: 20px; z-index: 1051;
-      background: var(--sidebar-red); color: #fff;
+      background: var(--sidebar-purple); color: #fff;
       padding: 10px 15px; border: none; border-radius: 5px;
       font-size: 18px; cursor: pointer;
     }
 
     /* Content wrapper full width */
     .content-wrapper {
-      background-color: #fff;
-      border: 1px solid rgba(160,48,48,0.2);
+  background: var(--section-bg);
+      border: 1px solid #3a1c71;
       border-radius: 16px;
       margin: 3rem auto;
       padding: 3rem 2rem;
       max-width: 1200px;
       width: calc(100% - 4rem);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 24px var(--card-shadow);
     }
     .content-wrapper section {
       padding: 2rem 1rem;
       margin-bottom: 2rem;
       text-align: center;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     .content-wrapper section:last-child {
       border-bottom: none; margin-bottom: 0;
@@ -121,21 +127,38 @@
 
     /* Cards */
     .card {
-      border: 1px solid rgba(0,0,0,0.1);
+      border: 1px solid #3a1c71;
       display: flex;
       flex-direction: column;
       border-radius: 12px;
       transition: transform .2s, box-shadow .2s;
       margin-bottom: 1rem;
+  background: var(--card-bg);
+      box-shadow: 0 4px 24px var(--card-shadow);
     }
-    
+     /* WIP badge styling */
+    .wip-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(90deg, #ff9800 0%, #ffc107 100%);
+      color: #232347;
+      font-weight: bold;
+      font-size: 0.95em;
+      padding: 0.3em 0.8em;
+      border-radius: 1em;
+      box-shadow: 0 2px 8px #0002;
+      z-index: 2;
+      letter-spacing: 1px;
+      border: 1.5px solid #fff8;
+      text-shadow: 0 1px 2px #fff8;
+    }
     .card-body {
       flex-grow: 1;
     }
-
     .card:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 32px #a044ff44;
     }
     .project-img {
       height: 200px; object-fit: cover;
@@ -144,14 +167,16 @@
     }
 
     .btn-primary {
-      background-color: var(--accent-red);
-      border-color: var(--accent-red);
+      background: linear-gradient(90deg, #6a3093 0%, #a044ff 100%);
+      border: none;
+      color: #fff;
+      box-shadow: 0 2px 8px #0004;
     }
     .btn-outline-primary {
-      color: var(--accent-red); border-color: var(--accent-red);
+      color: #a044ff; border-color: #a044ff;
     }
     .btn-outline-primary:hover {
-      background-color: var(--accent-red); color: #fff;
+      background: #a044ff; color: #fff;
     }
 
     .scroll-top {
@@ -163,10 +188,12 @@
     .custom-modal-dialog { max-width: 1000px; }
     .modal-content {
       max-height: 90vh; overflow-y: auto; padding: 1.5rem;
+  background: var(--card-bg);
+      color: #e0e0ff;
     }
     .modal-images-container {
       display: flex; overflow-x: auto; gap: 16px;
-      padding: 1rem 0; border-bottom: 1px solid #eee;
+      padding: 1rem 0; border-bottom: 1px solid #3a1c71;
     }
     .modal-image {
       height: 250px; width: 250px; border-radius: 8px;
@@ -174,8 +201,8 @@
       transition: box-shadow .3s, border .3s;
     }
     .modal-image:hover {
-      border: 3px solid var(--accent-red);
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      border: 3px solid #a044ff;
+      box-shadow: 0 0 12px #a044ff88;
     }
     @media (max-width: 768px) {
       .modal-image { width:180px; height:180px; }
@@ -184,7 +211,7 @@
     /* Full-Size Image Modal */
     .full-size-modal {
       display:none; position:fixed;top:0;left:0;
-      width:100%;height:100%;background:rgba(0,0,0,0.8);
+      width:100%;height:100%;background:rgba(20,10,40,0.95);
       justify-content:center;align-items:center;
       z-index:2000;
     }
@@ -194,7 +221,7 @@
     }
     .full-size-modal .close-btn {
       position:absolute;top:30px;right:30px;
-      background:var(--accent-red);border:none;
+      background:#a044ff;border:none;
       width:50px;height:50px;font-size:30px;color:#fff;
       display:flex;justify-content:center;align-items:center;
       transition:transform .2s;border-radius:0;cursor:pointer;
@@ -205,7 +232,7 @@
   </style>
 </head>
 <body>
-  <canvas id="particle-canvas"></canvas>
+  <canvas id="star-canvas"></canvas>
 
   <!-- Sidebar -->
   <nav class="sidebar">
@@ -234,9 +261,24 @@
         <h2 class="mb-4">Projects</h2>
         <div class="row justify-content-center">
 
+          <!--Uber Analytics 2024-->
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 position-relative" data-wip="true" data-bs-toggle="modal" data-bs-target="#projectModal"
+                   onclick="openModal('Uber Analytics 2024','A data analytics project using Uber trip data for 2024. Features interactive charts, data cleaning, and insights into ride patterns.',
+                                  ['assets/images/uberanalytics24.png'],
+                                  'https://github.com/jadenesteves/Uber-Ride-Analytics-2024')">
+                <span class="wip-badge">WIP</span>
+                <img src="assets/images/uberanalytics24.png" class="card-img-top project-img" alt="Project Image">
+                <div class="card-body">
+                  <h5 class="card-title">Uber Analytics 2024</h5>
+                  <p class="card-text">Data analytics project using Uber trip data for 2024...</p>
+                </div>
+              </div>
+          </div>
+
           <!--Expense Tracker Application-->
           <div class="col-md-4 mb-4">
-            <div class="card h-100" data-bs-toggle="modal" data-bs-target="#projectModal"
+            <div class="card h-100 position-relative" data-wip="true" data-bs-toggle="modal" data-bs-target="#projectModal"
                  onclick="openModal('Expense Tracker App','Project done for the hanheld ubiquitous computing class in Spring 2024. Features include...display expenses from the last 30 days and how much you owe in total, add/remove/update expenses, add/remove/view categories of expenses and can search for specific expenses by name.',
                                   ['assets/images/expenseproject1.PNG','assets/images/expenseproject2.PNG'],
                                   'https://github.com/jadenesteves/ExpenseTrackerApp')">
@@ -351,45 +393,135 @@
       document.getElementById('fullSizeModal').classList.remove('open');
     }
 
-    const canvas=document.getElementById('particle-canvas'),
-          ctx=canvas.getContext('2d');
-    let particles=[], num=50, maxJ=0.04;
-    function getRandomShade(){
-      const r=200+Math.random()*55,
-            g=100+Math.random()*50,
-            b=100+Math.random()*50,
-            a=0.3+Math.random()*0.3;
-      return `rgba(${r},${g},${b},${a})`;
+    // Starry sky with circling stars
+    const canvas = document.getElementById('star-canvas');
+    const ctx = canvas.getContext('2d');
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+
+    function resizeCanvas() {
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
     }
-    function initCanvas(){
-      canvas.width=innerWidth; canvas.height=innerHeight;
-      particles=Array.from({length:num},()=>{
-        return {x:Math.random()*canvas.width,
-          y:Math.random()*canvas.height,
-          r:8+Math.random()*7,
-          dx:(Math.random()-0.5)*0.2,
-          dy:(Math.random()-0.5)*0.2,
-          color:getRandomShade()};
-      });
+    window.addEventListener('resize', resizeCanvas);
+
+    // Star config
+    const STAR_COUNT = 180;
+    function getCenter() {
+      // Find the profile image and get its center position relative to the viewport
+      const img = document.querySelector('#hero .rounded-circle');
+      if (img) {
+        const rect = img.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2 + window.scrollX,
+          y: rect.top + rect.height / 2 + window.scrollY
+        };
+      }
+      // fallback to center of screen
+      return { x: window.innerWidth/2, y: window.innerHeight/2 };
     }
-    function draw(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      particles.forEach(p=>{
-        p.dx+=(Math.random()-0.5)*maxJ; p.dy+=(Math.random()-0.5)*maxJ;
-        p.dx=Math.max(-0.2,Math.min(0.2,p.dx));
-        p.dy=Math.max(-0.2,Math.min(0.2,p.dy));
-        p.x+=p.dx; p.y+=p.dy;
-        if(p.x<-p.r) p.x=canvas.width+p.r;
-        if(p.x>canvas.width+p.r) p.x=-p.r;
-        if(p.y<-p.r) p.y=canvas.height+p.r;
-        if(p.y>canvas.height+p.r) p.y=-p.r;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
-        ctx.fillStyle=p.color; ctx.fill();
-      });
-      requestAnimationFrame(draw);
+    let CENTER = getCenter();
+  let RADIUS = Math.max(window.innerWidth, window.innerHeight) * 0.48;
+    let stars = [];
+    function initStars() {
+      CENTER = getCenter();
+      RADIUS = Math.max(window.innerWidth, window.innerHeight) * 0.48;
+      stars = [];
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        // Spread stars more evenly from center to edge
+        const radius = RADIUS * (0.10 + 0.90 * Math.random());
+        const speed = 0.0005 + Math.random() * 0.0008;
+        // Make stars slightly larger for brightness
+        const size = 1.2 + Math.random() * 2.2;
+        stars.push({ angle, radius, speed, size });
+      }
     }
-    window.addEventListener('resize', initCanvas);
-    initCanvas(); draw();
+
+
+    function updateStarsCenterOnly() {
+      resizeCanvas();
+      CENTER = getCenter();
+      RADIUS = Math.max(window.innerWidth, window.innerHeight) * 0.48;
+    }
+    window.addEventListener('resize', updateStarsCenterOnly);
+    window.addEventListener('scroll', updateStarsCenterOnly);
+    window.addEventListener('DOMContentLoaded', () => {
+      resizeCanvas();
+      initStars();
+    });
+    initStars();
+
+  function drawStars(time) {
+    // Fade out previous frame slightly for trails
+    ctx.globalAlpha = 0.72;
+    ctx.fillStyle = '#232347';
+    ctx.fillRect(0, 0, w, h);
+    ctx.globalAlpha = 1.0;
+    ctx.save();
+  // Draw big central star
+  ctx.beginPath();
+  ctx.arc(CENTER.x, CENTER.y, Math.max(w, h) * 0.035, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+  ctx.shadowColor = '#fffbe6';
+  ctx.shadowBlur = 48;
+  ctx.fill();
+  ctx.shadowBlur = 0;
+  // Always update center and radius to keep stars centered on image
+  CENTER = getCenter();
+  RADIUS = Math.max(window.innerWidth, window.innerHeight) * 0.48;
+    // Draw orbiting stars with trails
+    for (let i = 0; i < STAR_COUNT; i++) {
+      const star = stars[i];
+      // Animate angle
+      star.angle += star.speed;
+      if (star.angle > Math.PI * 2) star.angle -= Math.PI * 2;
+      // Draw curved trail
+  let trailLength = 60;
+  let segments = 40;
+      // Compute current star position
+      let headX = CENTER.x + Math.cos(star.angle) * star.radius;
+      let headY = CENTER.y + Math.sin(star.angle) * star.radius * 0.7;
+      let lastX = headX;
+      let lastY = headY;
+      for (let s = 1; s <= trailLength; s++) {
+        let t = s / trailLength;
+        let angle = star.angle - star.speed * s;
+        let x = CENTER.x + Math.cos(angle) * star.radius;
+        let y = CENTER.y + Math.sin(angle) * star.radius * 0.7;
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        // Gradient: thick/bright at star, sharp at tail
+        let grad = ctx.createLinearGradient(lastX, lastY, x, y);
+        grad.addColorStop(0, `rgba(230,230,255,${0.7 + 0.3 * (1-t)})`); // near star, bright
+        grad.addColorStop(1, `rgba(230,230,255,0.0)`); // tail, transparent
+        ctx.strokeStyle = grad;
+        // Line width thick at star, sharp at tail
+        ctx.lineWidth = star.size * 1.2 * (1.0 - 0.8 * t);
+        ctx.shadowColor = '#bbaaff';
+        ctx.shadowBlur = 8 * (1.0 - t);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+        lastX = x;
+        lastY = y;
+      }
+      // Draw star head at current position
+      ctx.beginPath();
+      ctx.arc(headX, headY, star.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(230,230,255,1)`;
+      ctx.shadowColor = '#bbaaff';
+      ctx.shadowBlur = 16;
+      ctx.fill();
+    }
+    ctx.restore();
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
   </script>
 </body>
 </html>
