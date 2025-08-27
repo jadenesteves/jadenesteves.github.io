@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Cache-Control for static assets (note: full effect requires server config) -->
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
   <title>&ltjadenesteves&gt</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
@@ -98,13 +100,19 @@
       font-weight: 700;
       font-size: 1.15rem;
       box-shadow: 0 2px 16px 2px #fff8, 0 2px 8px #0002;
-      padding: 0.75em 2.2em;
+      padding: 0.75em 1.2em;
       transition: transform 0.15s, box-shadow 0.15s, background 0.2s, color 0.2s;
       outline: 2px solid #fff;
       outline-offset: 2px;
       position: relative;
       z-index: 2;
       letter-spacing: 0.5px;
+    }
+    @media (max-width: 400px) {
+      .resume-btn {
+        font-size: 1rem;
+        padding: 0.65em 0.7em;
+      }
     }
     .resume-btn:hover, .resume-btn:focus {
       background: #f0f0ff !important;
@@ -418,7 +426,10 @@
   <main>
     <div class="content-wrapper">
   <section id="hero">
-        <img src="assets/images/jadene.jpg" alt="Your Name" class="rounded-circle mb-4" style="width:150px;height:150px;object-fit:cover;">
+        <picture>
+          <source srcset="assets/images/jadene.webp" type="image/webp">
+          <img src="assets/images/jadene.jpg" alt="Your Name" class="rounded-circle mb-4" style="width:150px;height:150px;object-fit:cover;" loading="lazy" width="150" height="150">
+        </picture>
         <h1 class="display-4">Hi, I'm Jaden!</h1>
         <p class="lead">I love building things with code, from full stack web applications to even mobile applications and more! Here's some of my work.</p>
       </section>
@@ -480,10 +491,13 @@
           <div class="col-md-4 mb-4">
             <div class="card h-100 position-relative" data-wip="true" data-bs-toggle="modal" data-bs-target="#projectModal"
                    onclick="openModal('Uber Analytics 2024','A data analytics project using Uber trip data for 2024. Features interactive charts, data cleaning, and insights into ride patterns.',
-                                  ['assets/images/Uberanalytics24.PNG',],
+                                  ['assets/images/Uberanalytics24.webp',],
                                   'https://github.com/jadenesteves/Uber-Ride-Analytics-2024')">
                 <span class="wip-badge">WIP</span>
-                <img src="assets/images/Uberanalytics24.PNG" class="card-img-top project-img" alt="Project Image">
+                <picture>
+                  <source srcset="assets/images/Uberanalytics24.webp" type="image/webp">
+                  <img src="assets/images/Uberanalytics24.webp" class="card-img-top project-img" alt="Project Image" loading="lazy" width="465" height="300">
+                </picture>
                 <div class="card-body">
                   <h5 class="card-title">Uber Analytics 2024</h5>
                   <p class="card-text">Data analytics project using Uber trip data for 2024...</p>
@@ -495,9 +509,12 @@
           <div class="col-md-4 mb-4">
             <div class="card h-100 position-relative" data-wip="true" data-bs-toggle="modal" data-bs-target="#projectModal"
                  onclick="openModal('Expense Tracker App','Project done for the hanheld ubiquitous computing class in Spring 2024. Features include...display expenses from the last 30 days and how much you owe in total, add/remove/update expenses, add/remove/view categories of expenses and can search for specific expenses by name.',
-                                  ['assets/images/expenseproject1.PNG','assets/images/expenseproject2.PNG'],
+                                  ['assets/images/expenseproject1.webp','assets/images/expenseproject2.webp'],
                                   'https://github.com/jadenesteves/ExpenseTrackerApp')">
-              <img src="assets/images/expenseproject1.PNG" class="card-img-top project-img" alt="Project Image">
+              <picture>
+                <source srcset="assets/images/expenseproject1.webp" type="image/webp">
+                <img src="assets/images/expenseproject1.PNG" class="card-img-top project-img" alt="Project Image" loading="lazy" width="465" height="300">
+              </picture>
               <div class="card-body">
                 <h5 class="card-title">Expense Tracker App</h5>
                 <p class="card-text">Android mobile application used to track your expenses...</p>
@@ -509,9 +526,12 @@
           <div class="col-md-4 mb-4">
             <div class="card h-100" data-bs-toggle="modal" data-bs-target="#projectModal"
                  onclick="openModal('Senior Capstone Assignment','A Virtual Human (VH) prototype is being developed to assist individuals with ADHD in task completion by improving focus and productivity. This study aims to evaluate the effectiveness of a VH compared to a real human guide, analyzing the impact on user attention and task performance. The prototype integrates an advanced eye-tracking module with an AI-driven behavioral analysis system. By continuously monitoring user engagement, the system is designed to detect unproductive behaviors in real-time and provide personalized prompts and guidance to help refocus attention and maintain productivity.',
-                                  ['assets/images/VHproject3.PNG','assets/images/VHproject2.PNG', 'assets/images/VHproject1.PNG'],
+                                  ['assets/images/VHproject3.webp','assets/images/VHproject2.webp', 'assets/images/VHproject1.webp'],
                                   'https://github.com/ap26131/VH-Body-Doubling-for-Productivity-')">
-              <img src="assets/images/VHproject3.PNG" class="card-img-top project-img" alt="Project Image">
+              <picture>
+                <source srcset="assets/images/VHproject3.webp" type="image/webp">
+                <img src="assets/images/VHproject3.PNG" class="card-img-top project-img" alt="Project Image" loading="lazy" width="465" height="300">
+              </picture>
               <div class="card-body">
                 <h5 class="card-title">Senior Capstone Assignment</h5>
                 <p class="card-text">Experiment on human body doubling vs virtual human body doubling...</p>
@@ -523,9 +543,12 @@
           <div class="col-md-4 mb-4">
             <div class="card h-100" data-bs-toggle="modal" data-bs-target="#projectModal"
                  onclick="openModal('Project Lightfall: Top-Down Prototype','Project Lightfall is all about going up floor by floor to escape a facility filled with dangerous entities that have escaped. Heavily inspired by games like SCP foundation, Lobotomy Corporation and Lethal Company.',
-                                  ['assets/images/lightfallproject3.PNG','assets/images/lightfallproject2.PNG', 'assets/images/lightfallproject1.PNG'],
+                                  ['assets/images/lightfallproject3.webp','assets/images/lightfallproject2.webp', 'assets/images/lightfallproject1.webp'],
                                   'https://github.com/jadenesteves/Project-Lightfall-Top-Down-Prototype')">
-              <img src="assets/images/lightfallproject3.PNG" class="card-img-top project-img" alt="Project Image">
+              <picture>
+                <source srcset="assets/images/lightfallproject3.webp" type="image/webp">
+                <img src="assets/images/lightfallproject3.PNG" class="card-img-top project-img" alt="Project Image" loading="lazy" width="465" height="300">
+              </picture>
               <div class="card-body">
                 <h5 class="card-title">Project Lightfall: Top-Down Prototype</h5>
                 <p class="card-text">Top-down horror game prototype made in Gamemaker Studio...</p>
@@ -537,7 +560,7 @@
   <section id="resume">
         <h2 class="mb-4">Resume</h2>
         <p>View or download my resume below:</p>
-        <div class="ratio ratio-4x3 mb-4"><iframe src="assets/documents/JERESUME25.pdf" style="border:1px solid #ccc;"></iframe></div>
+  <div class="ratio ratio-4x3 mb-4"><iframe src="assets/documents/JERESUME25.pdf" style="border:1px solid #ccc;" loading="lazy"></iframe></div>
   <a href="assets/documents/JERESUME25.pdf" class="resume-btn" download>Download Resume (PDF)</a>
   </section>
   <section id="contact">
@@ -578,8 +601,9 @@
     <img id="full-size-image" src="" alt="Enlarged">
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+  <!-- Defer star animation and other non-critical JS -->
+  <script defer>
     function toggleSidebar() {
       document.querySelector('.sidebar').classList.toggle('open');
     }
@@ -625,7 +649,7 @@
     window.addEventListener('resize', resizeCanvas);
 
     // Star config
-  const STAR_COUNT = 100;
+  const STAR_COUNT = 60;
     function getCenter() {
       // Find the profile image and get its center position relative to the viewport
       const img = document.querySelector('#hero .rounded-circle');
@@ -664,31 +688,40 @@
       RADIUS = Math.max(window.innerWidth, window.innerHeight) * 0.48;
     }
     window.addEventListener('resize', updateStarsCenterOnly);
-    window.addEventListener('scroll', updateStarsCenterOnly);
     window.addEventListener('DOMContentLoaded', () => {
       resizeCanvas();
       initStars();
     });
     initStars();
 
+  // Lower framerate and reduce shadow blurs, pause when modal is open
+  let lastFrame = 0;
+  const FRAME_INTERVAL = 1000 / 20; // ~24 FPS
+  let animationPaused = false;
+
   function drawStars(time) {
-    // Fade out previous frame slightly for trails
+    if (animationPaused) return;
+    if (time - lastFrame < FRAME_INTERVAL) {
+      requestAnimationFrame(drawStars);
+      return;
+    }
+    lastFrame = time;
     ctx.globalAlpha = 0.72;
     ctx.fillStyle = '#232347';
     ctx.fillRect(0, 0, w, h);
     ctx.globalAlpha = 1.0;
     ctx.save();
-  // Draw big central star
-  ctx.beginPath();
-  ctx.arc(CENTER.x, CENTER.y, Math.max(w, h) * 0.035, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
-  ctx.shadowColor = '#fffbe6';
-  ctx.shadowBlur = 48;
-  ctx.fill();
-  ctx.shadowBlur = 0;
-  // Always update center and radius to keep stars centered on image
-  CENTER = getCenter();
-  RADIUS = Math.max(window.innerWidth, window.innerHeight) * 0.48;
+    // Draw big central star
+    ctx.beginPath();
+    ctx.arc(CENTER.x, CENTER.y, Math.max(w, h) * 0.035, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+    ctx.shadowColor = '#fffbe6';
+    ctx.shadowBlur = 16; // reduced from 48
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    // Always update center and radius to keep stars centered on image
+    CENTER = getCenter();
+    RADIUS = Math.max(window.innerWidth, window.innerHeight) * 0.48;
     // Draw orbiting stars with trails
     for (let i = 0; i < STAR_COUNT; i++) {
       const star = stars[i];
@@ -696,8 +729,7 @@
       star.angle += star.speed;
       if (star.angle > Math.PI * 2) star.angle -= Math.PI * 2;
       // Draw curved trail
-  let trailLength = 30;
-      // Compute current star position
+      let trailLength = 16;
       let headX = CENTER.x + Math.cos(star.angle) * star.radius;
       let headY = CENTER.y + Math.sin(star.angle) * star.radius * 0.7;
       let lastX = headX;
@@ -710,15 +742,13 @@
         ctx.beginPath();
         ctx.moveTo(lastX, lastY);
         ctx.lineTo(x, y);
-        // Gradient: thick/bright at star, sharp at tail
         let grad = ctx.createLinearGradient(lastX, lastY, x, y);
-        grad.addColorStop(0, `rgba(230,230,255,${0.7 + 0.3 * (1-t)})`); // near star, bright
-        grad.addColorStop(1, `rgba(230,230,255,0.0)`); // tail, transparent
+        grad.addColorStop(0, `rgba(230,230,255,${0.7 + 0.3 * (1-t)})`);
+        grad.addColorStop(1, `rgba(230,230,255,0.0)`);
         ctx.strokeStyle = grad;
-        // Line width thick at star, sharp at tail
         ctx.lineWidth = star.size * 1.2 * (1.0 - 0.8 * t);
         ctx.shadowColor = '#bbaaff';
-  ctx.shadowBlur = 4 * (1.0 - t);
+        ctx.shadowBlur = 1.5 * (1.0 - t); // reduced from 4
         ctx.stroke();
         ctx.shadowBlur = 0;
         lastX = x;
@@ -729,13 +759,32 @@
       ctx.arc(headX, headY, star.size, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(230,230,255,1)`;
       ctx.shadowColor = '#bbaaff';
-      ctx.shadowBlur = 16;
+      ctx.shadowBlur = 4; // reduced from 16
       ctx.fill();
     }
     ctx.restore();
     requestAnimationFrame(drawStars);
   }
-  drawStars();
+
+  // Pause animation when modal is open
+  function handleModalAnimation() {
+    const modal = document.getElementById('projectModal');
+    if (!modal) return;
+    modal.addEventListener('show.bs.modal', () => { animationPaused = true; });
+    modal.addEventListener('hide.bs.modal', () => {
+      animationPaused = false;
+      requestAnimationFrame(drawStars);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', handleModalAnimation);
+
+  // Only run animation if canvas is visible
+  function isCanvasVisible() {
+    return canvas.offsetParent !== null;
+  }
+
+  // Start animation
+  requestAnimationFrame(drawStars);
   </script>
 </body>
 </html>
