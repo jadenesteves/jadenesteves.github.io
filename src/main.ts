@@ -159,13 +159,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (error) {
     console.error('Error initializing portfolio app:', error)
     
-    // Hide spinner even if there's an error
+    // Hide spinner even if there's an error and show content
     const loadingSpinner = document.getElementById('loading-spinner')
     const layoutContainer = document.getElementById('layout-container')
     
     if (loadingSpinner && layoutContainer) {
       loadingSpinner.style.display = 'none'
       layoutContainer.classList.add('loaded')
+    }
+    
+    // Show a user-friendly error message
+    const heroSection = document.querySelector('#about .hero-content')
+    if (heroSection) {
+      const errorMessage = document.createElement('div')
+      errorMessage.style.cssText = 'background: #ff4444; color: white; padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center;'
+      errorMessage.innerHTML = '⚠️ Some interactive features may not be fully loaded. The site is still functional!'
+      heroSection.appendChild(errorMessage)
     }
   }
 })
