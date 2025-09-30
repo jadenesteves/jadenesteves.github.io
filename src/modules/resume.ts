@@ -71,7 +71,7 @@ export class ResumeManager {
     return `
       <div class="resume-viewer">
         <div class="resume-preview">
-          <embed src="./JERESUME25.pdf" type="application/pdf" width="100%" height="800px" />
+          <embed src="/JERESUME25.pdf" type="application/pdf" width="100%" height="800px" />
         </div>
       </div>
     `
@@ -80,13 +80,13 @@ export class ResumeManager {
   private renderResumeActions(): string {
     return `
       <div class="resume-actions">
-        <a href="./JERESUME25.pdf" target="_blank" class="btn-primary resume-btn">
+        <a href="/JERESUME25.pdf" target="_blank" class="btn-primary resume-btn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 0.5rem;">
             <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
           </svg>
           View Resume
         </a>
-        <a href="./JERESUME25.pdf" download="Jaden_Esteves_Resume.pdf" class="btn-secondary resume-btn">
+        <a href="/JERESUME25.pdf" download="Jaden_Esteves_Resume.pdf" class="btn-secondary resume-btn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 0.5rem;">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
           </svg>
