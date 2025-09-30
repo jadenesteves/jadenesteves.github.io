@@ -134,6 +134,23 @@ class PortfolioApp {
   }
 }
 
+// Function to hide loading spinner
+function hideLoadingSpinner() {
+  const loadingSpinner = document.getElementById('loading-spinner')
+  const layoutContainer = document.getElementById('layout-container')
+  
+  if (loadingSpinner) {
+    loadingSpinner.style.display = 'none'
+  }
+  if (layoutContainer) {
+    layoutContainer.style.opacity = '1'
+    layoutContainer.classList.add('loaded')
+  }
+}
+
+// Immediate fallback - try to hide spinner after 3 seconds
+setTimeout(hideLoadingSpinner, 3000)
+
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
   try {

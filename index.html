@@ -50,7 +50,7 @@
         opacity: 1;
       }
       
-      /* Loading spinner */
+      /* Loading spinner with auto-hide fallback */
       .loading-spinner {
         position: fixed;
         top: 50%;
@@ -61,19 +61,56 @@
         border: 4px solid var(--border-color);
         border-top: 4px solid var(--accent-color);
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite, fadeOut 0.5s ease-out 5s forwards;
         z-index: 9999;
+      }
+      
+      /* Auto-show content after 5 seconds as fallback */
+      .layout-container {
+        animation: autoShow 0.5s ease-in 5.5s forwards;
       }
       
       @keyframes spin {
         0% { transform: translate(-50%, -50%) rotate(0deg); }
         100% { transform: translate(-50%, -50%) rotate(360deg); }
       }
+      
+      @keyframes fadeOut {
+        to { opacity: 0; visibility: hidden; }
+      }
+      
+      @keyframes autoShow {
+        to { opacity: 1; }
+      }
     </style>
+    
+    <!-- Emergency fallback to hide loading spinner -->
+    <script>
+      // Fallback: Hide loading spinner after 6 seconds no matter what
+      setTimeout(function() {
+        const spinner = document.getElementById('loading-spinner');
+        const container = document.getElementById('layout-container');
+        if (spinner) {
+          spinner.style.display = 'none';
+        }
+        if (container) {
+          container.style.opacity = '1';
+          container.classList.add('loaded');
+        }
+      }, 6000);
+    </script>
   </head>
   <body>
     <!-- Loading spinner -->
     <div class="loading-spinner" id="loading-spinner"></div>
+    
+    <!-- No JavaScript fallback -->
+    <noscript>
+      <style>
+        .loading-spinner { display: none !important; }
+        .layout-container { opacity: 1 !important; }
+      </style>
+    </noscript>
     
     <div class="layout-container" id="layout-container">
       <!-- Navigation -->
