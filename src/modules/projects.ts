@@ -59,6 +59,23 @@ export class ProjectsManager {
     return [
       {
         id: 1,
+        name: 'FGC Event Finder',
+        description: 'Ultra-fast FGC event finder with SQLite caching and Google Sheets integration',
+        html_url: 'https://github.com/jadenesteves/fgc-event-finder',
+        homepage: null,
+        language: 'JavaScript',
+        languages_url: '',
+        stargazers_count: 0,
+        forks_count: 0,
+        topics: ['javascript', 'HTML', 'sqlite', 'google-sheets', 'fgc'],
+        created_at: '2024-01-15T10:00:00Z',
+        updated_at: '2024-12-01T15:30:00Z',
+        languages: { JavaScript: 85, other: 15},
+        image: '/images/fgceventfinder.webp',
+        wip: true
+      },
+      {
+        id: 2,
         name: 'Uber Analytics 2024',
         description: 'Data analytics project using Uber trip data for 2024',
         html_url: 'https://github.com/jadenesteves/Uber-Ride-Analytics-2024',
@@ -75,7 +92,7 @@ export class ProjectsManager {
         wip: true
       },
       {
-        id: 2,
+        id: 3,
         name: 'Expense Tracker App',
         description: 'Android mobile application used to track your expenses',
         html_url: 'https://github.com/jadenesteves/ExpenseTrackerApp',
@@ -91,7 +108,7 @@ export class ProjectsManager {
         image: '/images/expense-tracker.webp'
       },
       {
-        id: 3,
+        id: 4,
         name: 'Senior Capstone Assignment',
         description: 'Experiment on human body doubling vs virtual human body doubling',
         html_url: 'https://github.com/ap26131/VH-Body-Doubling-for-Productivity-',
@@ -107,7 +124,7 @@ export class ProjectsManager {
         image: '/images/capstone.webp'
       },
       {
-        id: 4,
+        id: 5,
         name: 'Project Lightfall: Top-Down Prototype',
         description: 'Top-down horror game prototype made in Gamemaker Studio',
         html_url: 'https://github.com/jadenesteves/Project-Lightfall-Top-Down-Prototype',
