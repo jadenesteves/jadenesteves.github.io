@@ -44,16 +44,34 @@ export class ProjectsManager {
   }
 
   private async loadProjects(): Promise<void> {
-    // If you have GitHub token, uncomment this to fetch real repos
-    // const { data: repos } = await this.octokit!.rest.repos.listForUser({
-    //   username: 'your-github-username',
-    //   sort: 'updated',
-    //   per_page: 6
-    // })
-    
-    // For now, use example projects
+    // Use curated example projects for reliability on GitHub Pages
+    // GitHub API can hit rate limits (60 req/hour) on static sites
     this.projects = this.getExampleProjects()
+    
+    // Optional: Try to fetch real GitHub repos as enhancement
+    // Uncomment this if you want to try GitHub API (with rate limit risk)
+    /*
+    try {
+      const response = await fetch('https://api.github.com/users/jadenesteves/repos?sort=updated&per_page=10')
+      if (response.ok) {
+        const repos: GitHubRepo[] = await response.json()
+        this.projects = repos
+          .filter(repo => !repo.name.includes('.github.io') && repo.description)
+          .map(repo => ({
+            ...repo,
+            languages: { [repo.language || 'Unknown']: 100 },
+            image: this.getProjectImage(repo.name),
+            wip: this.isWipProject(repo)
+          }))
+          .slice(0, 6)
+      }
+    } catch (error) {
+      console.log('GitHub API unavailable, using curated projects')
+    }
+    */
   }
+
+
 
   private getExampleProjects(): ProjectData[] {
     return [
@@ -173,14 +191,15 @@ export class ProjectsManager {
 
   private createProjectCard(project: ProjectData): string {
     const languageColors: { [key: string]: string } = {
-      TypeScript: '#2d2d2d',
-      JavaScript: '#404040',
-      Python: '#5f6368',
-      CSS: '#6b7280',
-      HTML: '#9aa0a6',
-      Java: '#404040',
-      'C++': '#5f6368',
-      Go: '#6b7280'
+      TypeScript: '#3178c6',
+      JavaScript: '#f7df1e',
+      Python: '#3776ab',
+      CSS: '#1572b6',
+      HTML: '#e34c26',
+      Java: '#ed8b00',
+      'C++': '#00599c',
+      Go: '#00add8',
+      GML: '#8fb010'
     }
 
     const primaryLanguage = project.language || 'Unknown'
